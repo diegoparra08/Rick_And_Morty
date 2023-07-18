@@ -8,6 +8,7 @@ import About from './components/vistas/About';
 import Detail from './components/vistas/detail/Detail';
 import ErrorPage from './components/vistas/Error/Error';
 import Form from './components/Form/Form';
+import Favorites from './components/vistas/Favorites/Favorites';
 
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
             <Route path='/' element={<Form login={login}/>} />
             <Route path='/home' element={<Cards characters={characters} onClose={closeHandler} />} />
             <Route path='/detail/:id' element={<Detail />} />
+            <Route path='/favorites' element={<Favorites/>}/>
             <Route path='/about' element={<About />} />
             <Route path='*' element={<ErrorPage />} />
          </Routes>

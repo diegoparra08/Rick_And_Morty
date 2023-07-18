@@ -20,6 +20,11 @@ export default function NavBar({ onSearch }) {
             <Link to='/about'>
                 <AboutButton>About</AboutButton>
             </Link>
+
+            <Link to='/favorites'>
+                <AboutButton>Favorites</AboutButton>
+            </Link>
+
         </NavContainer>
     )
 }
