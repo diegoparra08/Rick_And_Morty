@@ -65,7 +65,7 @@ function App() {
             <Route path='/' element={<Form login={login}/>} />
             <Route path='/home' element={<Cards characters={characters} onClose={closeHandler} />} />
             <Route path='/detail/:id' element={<Detail />} />
-            <Route path='/favorites' element={<Favorites/>}/>
+            <Route path='/favorites' element={<Favorites characters={characters}/>}/>
             <Route path='/about' element={<About />} />
             <Route path='*' element={<ErrorPage />} />
          </Routes>

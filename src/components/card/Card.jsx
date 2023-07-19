@@ -13,6 +13,23 @@ function Card(props) {
 
    const [isFav, setIsFav] = useState(false);
 
+   //esta funcion esta creando la opcion de navegar hacia el detalle de cada personaje al hacer 
+   //click en el nombre o la foto
+   function navigateHandler() {
+      navigate(`/detail/${id}`)
+   }
+
+   function handleFavorite() {
+    
+      if (isFav) {
+         setIsFav(false);
+         removeFav(id);
+      } else {
+         setIsFav(true);
+         addFav({ id, name, species, gender, origin, image });
+      }
+   }
+
    useEffect(() => {
       myFavorites.forEach((fav) => {
          if (fav.id === props.id) {
@@ -21,31 +38,15 @@ function Card(props) {
       });
    }, [myFavorites]);
 
-   //esta funcion esta creando la opcion de navegar hacia el detalle de cada personaje al hacer 
-   //click en el nombre o la foto
-   function navigateHandler() {
-      navigate(`/detail/${id}`)
-   }
-
-   function handleFavorite() {
-      // if (isFav) {
-      //    removeFav(id);
-      //    setIsFav(false);
-      // } else {
-      //    addFav(id);
-      //    setIsFav(true);
-      // }
-      if (isFav) {
-         removeFav({ id, name, species, gender, origin, image });
-         setIsFav(false);
-      } else {
-         addFav({ id, name, species, gender, origin, image });
-         setIsFav(true);
-      }
-   }
-
    return (
       <SingleCard>
+         {
+            isFav ? (
+               <button onClick={() => handleFavorite(id)}>❤️</button>
+            ) : (
+               <button onClick={() => handleFavorite()}>🤍</button>
+            )
+         }
          <Info>Origin: {origin}</Info>
          <Info>Species: {species}</Info>
          <Info>Gender: {gender}</Info>
@@ -53,26 +54,10 @@ function Card(props) {
          <CharacterName onClick={navigateHandler}>{name}</CharacterName>
          <Image src={image} alt='Imagen del personaje' onClick={navigateHandler} />
          <CloseButton onClick={() => onClose(id)}>X</CloseButton>
-         {
-   isFav ? (
-      <button onClick={()=> handleFavorite(id)}>❤️</button>
-   ) : (
-      <button onClick={() => handleFavorite()}>🤍</button>
-   )
-}
+
       </SingleCard>
    );
 
-}
-
-const mapDispatchToProps = (dispatch) => {
-   return {
-      addFav,
-      removeFav,
-      // addFav: (character) => dispatch(addFav(character)),
-
-      // removeFav: (character) => dispatch(removeFav(character)),
-   }
 }
 
 const mapStateToProps = (state) => {
@@ -80,6 +65,15 @@ const mapStateToProps = (state) => {
       myFavorites: state.myFavorites
    }
 }
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      addFav: (character) => dispatch(addFav(character)),
+
+      removeFav: (id) => dispatch(removeFav(id)),
+   }
+}
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Card)
 //Para usar el Link en vez del Navigate:
