@@ -1,14 +1,16 @@
-import './App.css';
-import { useState, useEffect } from 'react';
 import axios from 'axios'
+import { useState, useEffect } from 'react';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+
 import Cards from './components/cards/Cards.jsx';
 import NavBar from './components/navBar/navBar'
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import About from './components/vistas/About';
 import Detail from './components/vistas/detail/Detail';
 import ErrorPage from './components/vistas/Error/Error';
 import Form from './components/Form/Form';
 import Favorites from './components/vistas/Favorites/Favorites';
+
+import './App.css';
 
 
 function App() {

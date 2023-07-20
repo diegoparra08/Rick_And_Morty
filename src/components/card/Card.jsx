@@ -1,8 +1,8 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addFav } from '../../Redux/actions';
 import { removeFav } from '../../Redux/actions';
-import { useState, useEffect } from 'react';
 
 import { SingleCard, Image, CharacterName, Info, CloseButton } from './card.style';
 
@@ -12,6 +12,14 @@ function Card(props) {
    const { id, name, species, gender, origin, image, onClose, addFav, removeFav, myFavorites } = props;
 
    const [isFav, setIsFav] = useState(false);
+   const [closeBtn, setCloseBtn] = useState(true);
+
+   useEffect(() => {
+      if (!onClose) {
+         setCloseBtn(false);
+      }
+   }, [])
+
 
    //esta funcion esta creando la opcion de navegar hacia el detalle de cada personaje al hacer 
    //click en el nombre o la foto
@@ -20,7 +28,7 @@ function Card(props) {
    }
 
    function handleFavorite() {
-    
+
       if (isFav) {
          setIsFav(false);
          removeFav(id);
@@ -53,7 +61,12 @@ function Card(props) {
          {/* la funcion navigateHandler se pasa como onClic al nombre y la imagen */}
          <CharacterName onClick={navigateHandler}>{name}</CharacterName>
          <Image src={image} alt='Imagen del personaje' onClick={navigateHandler} />
-         <CloseButton onClick={() => onClose(id)}>X</CloseButton>
+        {
+         closeBtn && (
+            <CloseButton onClick={() => onClose(id)}>X</CloseButton>
+         )
+        }
+         
 
       </SingleCard>
    );
