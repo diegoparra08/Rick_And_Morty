@@ -3,8 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { orderCards, filterCards, resetFavs } from "../../../Redux/actions";
 import Cards from "../../cards/Cards"
-
-
+import { FavContainer, SelectFilters, MyFavTitle, ResetFilterButton } from "./Favorites.style";
 
 
 function Favorites({myFavorites}) {
@@ -26,21 +25,24 @@ function handleReset(){
 
 
     return(
-        <div> 
+        <FavContainer> 
 
-        <select placeholder="Gender" onChange={handleFilter}>
+        <SelectFilters placeholder="Gender" onChange={handleFilter}>
         {["Male", "Female", "unknown", "Genderless"].map(gender => <option value={gender}>{gender}</option>)}
-        </select>
+        </SelectFilters>
 
-        <select placeholder="Order" onChange={handleOrder}>
+        <SelectFilters placeholder="Order" onChange={handleOrder}>
         {["Ascendente", "Descendente"].map(orden => <option value={orden}>{orden}</option>)}
-        </select>
+        </SelectFilters>
 
-        <button onClick={handleReset}>Reset Filters</button>
+        <ResetFilterButton onClick={handleReset}>Reset Filters</ResetFilterButton>
 
-            <h2>My Favorites</h2>
-        <Cards characters={myFavorites}/>
-        </div>
+            <MyFavTitle>My Favorites</MyFavTitle>
+            <div> 
+            <Cards characters={myFavorites}/>
+            </div>
+        
+        </FavContainer>
     );    
 }
 
@@ -51,3 +53,4 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, null)(Favorites)
+

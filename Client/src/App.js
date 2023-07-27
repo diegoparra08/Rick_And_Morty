@@ -35,24 +35,44 @@ function App() {
       !access && navigate('/');
    }, [access]);
    
-   // https://rickandmortyapi.com/api/character/${id}  api RyM
+
+
    function searchHandler(id) {
-      // const URL_BASE = "https://rickandmortyapi.com/api"
-      const URL_BASE = "http://localhost:3001/rickandmorty"
-
-      if(characters.find((char) => char.id === id)) {
-         return alert("Character already added!")
-      } 
-
+      const URL_BASE = "http://localhost:3001/rickandmorty";
+   
+      // Verificar si el personaje ya está en la lista
+      if (characters.find((char) => char.id === id)) {
+         return alert("Character already added!");
+      }
+   
+      // Buscar el personaje en la lista local antes de hacer la llamada a la API
+      const existingCharacter = characters.find((char) => char.id === id);
+      if (existingCharacter) {
+         setCharacters((oldChars) => [...oldChars, existingCharacter]);
+         return; // Salir de la función si el personaje ya está en la lista
+      }
+   
+      // Si el personaje no está en la lista local, hacer la llamada a la API
       fetch(`${URL_BASE}/character/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-         if (data.name){
-            setCharacters((oldChars) => [...oldChars,data]);
-         } else {
-            alert("Something went wrong!")
-         }
-      });
+         .then((response) => response.json())
+         .then((data) => {
+            if (data.name) {
+               // Verificar nuevamente si el personaje fue agregado mientras esperábamos la respuesta de la API
+               if (!characters.find((char) => char.id === data.id)) {
+                  setCharacters((oldChars) => [...oldChars, data]);
+               } else {
+                  alert("Character already added!");
+               }
+            } else {
+               alert("Character not found!");
+            }
+         })
+         .catch((error) => {
+            console.error("Error fetching data:", error);
+            alert("Something went wrong!");
+         });
+   
+// ! Abajo la opción de hacerlo con axios
 
       // axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
          

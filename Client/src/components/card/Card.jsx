@@ -59,6 +59,7 @@ function Card(props) {
          <Info>Origin: {origin}</Info>
          <Info>Species: {species}</Info>
          <Info>Gender: {gender}</Info>
+        
          {/* la funcion navigateHandler se pasa como onClic al nombre y la imagen */}
          <CharacterName onClick={navigateHandler}>{name}</CharacterName>
          <Image src={image} alt='Imagen del personaje' onClick={navigateHandler} />

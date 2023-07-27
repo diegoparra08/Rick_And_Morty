@@ -60,13 +60,17 @@ align-content: center;
 justify-content: center;
 `
 export const FavButtonInCard = styled.button`
-margin: 0;
-padding: 0;
+margin-top: 0;
+margin-left: 63px;
+padding: 1px;
 width: 25px;
 align-items: center;
 align-content: center;
 justify-content: center;
 border-radius: 30%;
-border: 1px solid black;
-
+border: 1px;
+background-color:  rgb(12, 206, 173);
+&:hover {
+    transform: scale(1.05);
+}
 `

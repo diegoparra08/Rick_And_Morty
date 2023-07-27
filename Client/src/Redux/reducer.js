@@ -17,17 +17,21 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case REMOVE_FAV:
+            const newRemove = state.allCharacters.filter((character) =>
+                character.id !== action.payload )
             return {
                 ...state,
-                myFavorites: state.myFavorites.filter((character) => character.id !== Number(action.payload))
+                myFavorites: newRemove,
+                allCharacters: newRemove
+               
             }
 
         case ORDER:
             let ordered;
-            if (action.payload === 'Ascendente'){
-                ordered = state.myFavorites.sort((a,b) => a.id > b.id ? 1 : -1)
-            } else{
-                ordered = state.myFavorites.sort((a,b) => b.id > a.id ? 1 : -1)
+            if (action.payload === 'Ascendente') {
+                ordered = state.myFavorites.sort((a, b) => a.id > b.id ? 1 : -1)
+            } else {
+                ordered = state.myFavorites.sort((a, b) => b.id > a.id ? 1 : -1)
             }
             return {
                 ...state,
@@ -40,11 +44,11 @@ const rootReducer = (state = initialState, action) => {
             }
 
         case RESET:
-            return{
+            return {
                 ...state,
                 myFavorites: state.allCharacters
             }
-            
+
         default:
             return {
                 ...state,
