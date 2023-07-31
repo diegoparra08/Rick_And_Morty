@@ -24,9 +24,9 @@ function Detail() {
         <DetailContainer>
             <InfoContainer>
                 <h2>Name: {character.name}</h2>
-                <h3>status: {character.status}</h3>
-                <h3>species: {character.species}</h3>
-                <h3>gender: {character.gender}</h3>
+                <h3>Status: {character.status}</h3>
+                <h3>Species: {character.species}</h3>
+                <h3>Gender: {character.gender}</h3>
                 <h3>origin: {character.origin?.name}</h3>
             </InfoContainer>
             <ImageContainer>

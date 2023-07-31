@@ -9,22 +9,20 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
+
         case ADD_FAV:
             return {
                 ...state,
-                myFavorites: [...state.myFavorites, action.payload],
-                allCharacters: [...state.myFavorites, action.payload]
-            }
+                myFavorites: action.payload,
+                allCharacters: action.payload,
+            };
 
         case REMOVE_FAV:
-            const newRemove = state.allCharacters.filter((character) =>
-                character.id !== action.payload )
             return {
                 ...state,
-                myFavorites: newRemove,
-                allCharacters: newRemove
-               
-            }
+                myFavorites: action.payload,
+                allCharacters: action.payload,
+            };
 
         case ORDER:
             let ordered;
@@ -37,6 +35,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 myFavorites: [...ordered]
             }
+            
         case FILTER:
             return {
                 ...state,
