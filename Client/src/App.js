@@ -31,59 +31,60 @@ function App() {
    // }
 
    async function login(userData) {
-      
+
       try {
          const { email, password } = userData;
-      const URL = 'http://localhost:3001/rickandmorty/login/';
+         const URL = 'http://localhost:3001/rickandmorty/login/';
 
          const { data } = await axios(URL + `?email=${email}&password=${password}`);
-      const { access } = data;
-      setAccess(data);
-      access && navigate('/home');
-
+         const { access } = data;
+         setAccess(data);
+         if (access) navigate ('/home')
+            else{alert('Wrong Credentials')}
+         
       } catch (error) {
-       console.log('Something went wrong');
+         alert('Something went wrong');
       }
    }
-   
+
    useEffect(() => {
       !access && navigate('/');
    }, [access]);
-   
+
 
 
    async function searchHandler(id) {
       const URL_BASE = "http://localhost:3001/rickandmorty";
-   
+
       // ! Verificar si el personaje ya está en la lista pero puede no ser necesario
       // if (characters.find((char) => char.id === id)) {
       //    return alert("Character already added!");
       // }
-   
+
       // Buscar el personaje en la lista local antes de hacer la llamada a la API
       const existingCharacter = characters.find((char) => char.id === id);
       if (existingCharacter) {
          setCharacters((oldChars) => [...oldChars, existingCharacter]);
          return; // Salir de la función si el personaje ya está en la lista
       }
-   
-   try {
-      const { data } = await axios(`${URL_BASE}/character/${id}`)
-         
-      const characterFind = characters.find((char) => char.id === Number(id))
 
-      if (characterFind) {
-         alert('Character has been already added to the list!')
-      }
+      try {
+         const { data } = await axios(`${URL_BASE}/character/${id}`)
 
-      else if (data.id !== undefined) {
-         setCharacters((oldChars) => [...oldChars, data]);
+         const characterFind = characters.find((char) => char.id === Number(id))
+
+         if (characterFind) {
+            alert('Character has been already added to the list!')
+         }
+
+         else if (data.id !== undefined) {
+            setCharacters((oldChars) => [...oldChars, data]);
+         }
+
+      } catch (error) {
+         console.log('error');
+         alert("Something went wrong!");
       }
-      
-   } catch (error) {
-      console.log('error');
-      alert("Something went wrong!");
-   }
 
    };
 
@@ -101,10 +102,10 @@ function App() {
 
 
          <Routes>
-            <Route path='/' element={<Form login={login}/>} />
+            <Route path='/' element={<Form login={login} />} />
             <Route path='/home' element={<Cards characters={characters} onClose={closeHandler} />} />
             <Route path='/detail/:id' element={<Detail />} />
-            <Route path='/favorites' element={<Favorites characters={characters}/>}/>
+            <Route path='/favorites' element={<Favorites characters={characters} />} />
             <Route path='/about' element={<About />} />
             <Route path='*' element={<ErrorPage />} />
          </Routes>

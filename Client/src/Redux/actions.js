@@ -18,8 +18,9 @@ export const addFav = (character) => {
                 payload: data,
             });
         } catch (error) {
-            alert('Error adding to Favorites')
-        }
+            return {error: error.message}
+            // alert('Error adding to Favorites')
+        };
     };
 };
 
@@ -33,8 +34,9 @@ export const removeFav = (id) => {
                 payload: data,
             });
         } catch (error) {
-            alert('Error deleting from Favorites')
-        }
+            return {error: error.message}
+            // alert('Error deleting from Favorites')
+        };
     };
 };
 
