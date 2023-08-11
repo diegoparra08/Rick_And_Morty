@@ -1,6 +1,7 @@
-const express = require('express')
-const router = require('./routes/index')
-const morgan = require('morgan')
+const express = require('express');
+const router = require('./routes/index');
+const morgan = require('morgan');
+const { conn } = require('./DB_connection');
 
 const server = express();  //crear el server 
 const PORT = 3001;
@@ -23,7 +24,9 @@ server.use(express.json())
 server.use(morgan("dev"))
 server.use("/rickandmorty", router); 
 
-server.listen(PORT, () => console.log("Server raised in port " + PORT)); //el server escucha en el puerto correcto
+server.listen(PORT, () => {
+   conn.sync({force: true})
+   console.log("Server raised in port " + PORT)}); //el server escucha en el puerto correcto
 
 
 //esto se pone para que no sea necesario poner a cada router lo mismo. 

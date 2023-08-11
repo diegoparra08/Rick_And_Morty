@@ -1,17 +1,39 @@
-const users = require('../utils/users')
+const { User } = require('../DB_connection');
 
-function login(req, res) {
-    const { email, password } = req.query; //se recibe por query en este caso. (no se recomienda usar query para login porque no es seguro para proteger informacion sensible)
+async function login(req, res) {
 
-    const found = users.find((user) => {  //Se usa un find para verificar si existe un user con esos valores
-       return user.email === email && user.password === password
-    } 
-    );
+    try {
+        const { email, password } = req.query;
 
-    const access = found ? true : false; // se guarda en access si se encontro o no un user (found) de ser asi, el valor sera ture o false según corresponda
+        if (!email || !password) {  //verifica que haya llegado toda la info
+            return res.status(400).send('Missing Data');
+        } else {
+            const response = await User.findOne({ //busca si el email existe
+                where: {
+                    email: email
+                }
+            });
 
-    res.status(200).json({access}) //Se devuelve un json con el valor de access que sera true o false
+            if (!response) { //si no existe el email, retorna error
+                return res.status(404).send('User Not Found!')
+            } else {
+                // bcrypt
+                // .compareSync(
+                //     password,
+                //     response['dataValues']['password']
+                //     )
+                //     ?  console.log("Passwords Match")
+                //el código arriba se usa para comparar la contraseña
+                //Si se hace el cifrado en User.js
+                return response.password === password ? //si existe el email compara la password
+                    res.status(200).json({ access: true }) : //setea el access en true
+                    res.status(403).send('Wrong Password!');
+            }
+        }
+
+    } catch (error) {
+        return res.status(500).json({error: error.message})
+    }
 };
 
 module.exports = login;
-
