@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import aboutImg from '../Images/rick_morty3.jpg'
+import aboutImg from '../Images/rick_morty1.png'
 
 
 export const AboutContainer = styled.div`
@@ -22,10 +22,10 @@ flex-direction: column;
 height: 50%;
 width: 30%;
 font-family: cursive;
-background-color: whitesmoke;
+background-color: #ebffd0;
 opacity: 0.8;
 border: 5px solid white;
-border-radius: 10px;
+border-radius: 3px;
 margin-top: 50px;
 
 `
@@ -36,8 +36,8 @@ flex-direction: column;
 height: 90%;
 width: 30%;
 font-family: cursive;
-background-color: whitesmoke;
+background-color: #ebffd0;
 opacity: 0.8;
 border: 5px solid white;
-border-radius: 10px;
+border-radius: 3px;
 `

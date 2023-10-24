@@ -7,7 +7,8 @@ margin-top: 8px;
 margin-right: 0px;
 margin-left: 15px;
 border-radius: 10px;
-border: 2px solid #32CD32;
+border: 2px solid #e5f1bb;
+background-color: #b6dfa0;
 `
 
 export const SearchButton = styled.button`
@@ -16,7 +17,7 @@ margin-top: 8px;
 margin-left: 0px;
 margin-right: 15px;
 border-radius: 10px;
-border: 2px solid white;
+border: 1px solid #e5f1bb;
 background-color: #32CD32;
 font-family: cursive;
 `
@@ -26,6 +27,6 @@ flex-wrap: wrap;
 background-color: black;
 margin-top: 10px;
 height: 65%;
-border: 1px ridge white;
+border: 1px ridge #e5f1bb;
 border-radius: 10px;
 `

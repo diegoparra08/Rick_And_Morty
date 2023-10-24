@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { addFav } from '../../Redux/actions';
 import { removeFav } from '../../Redux/actions';
 
-
-import { SingleCard, Image, CharacterName, Info, CloseButton, FavButtonInCard } from './card.style';
+import { FcCancel } from "react-icons/fc";
+import { SingleCard, Image, CharacterName, Info, PicInfoDiv, CloseButton, FavButtonInCard, ButtonsDiv, InfoDiv } from './card.style';
 
 
 function Card(props) {
@@ -49,6 +49,20 @@ console.log('caaaaard', origin);
 
    return (
       <SingleCard>
+         <PicInfoDiv>
+
+            <Image src={image} alt='Imagen del personaje' onClick={navigateHandler} />
+            <CharacterName onClick={navigateHandler}>{name}</CharacterName>
+
+            <InfoDiv>
+            <Info>Gender: {gender}</Info>
+            <Info>Species: {species}</Info>
+            <Info>Origin: {origin}</Info>
+            </InfoDiv>
+
+         </PicInfoDiv>
+
+         <ButtonsDiv>
          {
             isFav ? (
                <FavButtonInCard onClick={() => handleFavorite(id)}>❤️</FavButtonInCard>
@@ -56,19 +70,12 @@ console.log('caaaaard', origin);
                <FavButtonInCard onClick={() => handleFavorite()}>🤍</FavButtonInCard>
             )
          }
-         <Info>Origin: {origin}</Info>
-         <Info>Species: {species}</Info>
-         <Info>Gender: {gender}</Info>
-        
-         {/* la funcion navigateHandler se pasa como onClic al nombre y la imagen */}
-         <CharacterName onClick={navigateHandler}>{name}</CharacterName>
-         <Image src={image} alt='Imagen del personaje' onClick={navigateHandler} />
-        {
+          {
          closeBtn && (
-            <CloseButton onClick={() => onClose(id)}>X</CloseButton>
+            <CloseButton onClick={() => onClose(id)}><FcCancel/></CloseButton>
          )
         }
-         
+         </ButtonsDiv> 
 
       </SingleCard>
    );

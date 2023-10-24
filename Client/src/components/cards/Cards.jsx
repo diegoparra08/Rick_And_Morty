@@ -7,6 +7,7 @@ console.log(characters);
    return (
       <div>
       <CardsContainer>
+         
          {characters.map((character) => (
             <Card
                key={character.id}

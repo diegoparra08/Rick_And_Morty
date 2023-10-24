@@ -22,10 +22,10 @@ color: #32CD32;
 font-family: cursive;
 margin-left: 220px;
 outline: none;
-border: none;
+border: 1px solid #e5f1bb;
 background-color: black;
 margin-top: 28px;
-border-radius: 10px;
+border-radius: 5px;
 
 -moz-osx-font-smoothing: grayscale;
 backface-visibility: hidden;
@@ -47,10 +47,10 @@ color: #32CD32;
 font-family: cursive;
 margin-left: 5px;
 outline: none;
-border: none;
+border: 1px solid #e5f1bb;
 background-color: black;
 margin-top: 28px;
-border-radius: 10px;
+border-radius: 5px;
 
 -moz-osx-font-smoothing: grayscale;
 backface-visibility: hidden;
@@ -72,10 +72,10 @@ color: #32CD32;
 font-family: cursive;
 margin-left: 5px;
 outline: none;
-border: none;
+border: 1px solid #e5f1bb;
 background-color: black;
 margin-top: 28px;
-border-radius: 10px;
+border-radius: 5px;
 
 -moz-osx-font-smoothing: grayscale;
 backface-visibility: hidden;
