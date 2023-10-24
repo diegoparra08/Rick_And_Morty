@@ -13,6 +13,7 @@ export const addFav = (character) => {
     return async (dispatch) => {
         try {
             const { data } = await axios.post(endpoint, character)
+            console.log(data);
             return dispatch({
                 type: ADD_FAV,
                 payload: data,

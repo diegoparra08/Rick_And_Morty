@@ -4,7 +4,7 @@ const { User } = require('../DB_connection');
 const postUser = async(req, res) => {  //modelo post que requiere User y where
     try {
         const { email, password } = req.body; // info llega x body
-
+        console.log('entró al post');
         if (!email || !password) { //si falta algún dato se retorna un error
             return res.status(400).send('Missing Data');
         } else {

@@ -3,7 +3,7 @@ import {CardsContainer} from './cards.style'
 
 export default function Cards({ characters, onClose }) {
    
-
+console.log(characters);
    return (
       <div>
       <CardsContainer>
