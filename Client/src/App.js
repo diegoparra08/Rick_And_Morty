@@ -7,14 +7,13 @@ import NavBar from './components/navBar/navBar';
 import About from './components/vistas/About.jsx';
 import Detail from './components/vistas/detail/Detail.jsx';
 import ErrorPage from './components/vistas/Error/Error.jsx';
-import Form from './components/Form/Form.jsx';
 import Favorites from './components/vistas/Favorites/Favorites.jsx';
 
 import './App.css';
 
 
 function App() {
-   const location = useLocation();
+ 
    const [characters, setCharacters] = useState([]);
 
 
