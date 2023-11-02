@@ -59,11 +59,11 @@ function App() {
 
          {/* importando el hook useLocation y guardando la const location se verifica si la ubicación actual el
          diferente de / y si lo es renderiza la navbar. */}
-         {location.pathname !== '/' && <NavBar onSearch={searchHandler} />}
+         <NavBar onSearch={searchHandler} />
 
 
          <Routes>
-            <Route path='/home' element={<Cards characters={characters} onClose={closeHandler} />} />
+            <Route path='/' element={<Cards characters={characters} onClose={closeHandler} />} />
             <Route path='/detail/:id' element={<Detail />} />
             <Route path='/favorites' element={<Favorites characters={characters} />} />
             <Route path='/about' element={<About />} />

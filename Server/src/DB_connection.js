@@ -1,29 +1,25 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+const { DB_URL } = process.env;
 const UserModel = require('./models/User');
 const FavoriteModel = require('./models/Favorite');
 
-// EJERCICIO 03
 
-// Recuerda pasarle la información de tu archivo '.env'.
-
-// URL ----> postgres://DB_USER:DB_PASSWORD@DB_HOST/rickandmorty
+// URL ----> postgres://DB_USER:DB_PASSWORD@DB_HOST/rickandmorty cuando la DB es local no deploy
+// `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/rickandmorty`, //trae la info de forma mas segura.
 const sequelize = new Sequelize(
-   // URL
-   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/rickandmorty`, //trae la info de forma mas segura.
-   { logging: false, native: false }
-);
+   DB_URL, { 
+      logging: false,
+      native: false 
+   });
 
-// EJERCICIO 05
-// Debajo de este comentario puedes ejecutar la función de los modelos.
+
+//ejecutar la función de los modelos.
 UserModel(sequelize);
-//
-FavoriteModel(sequelize);
-//
 
-// Ejercicio 06
-// ¡Relaciona tus modelos aquí abajo!
+FavoriteModel(sequelize);
+
+// Relacion de modelos
 const { User, Favorite } = sequelize.models;
 
 User.belongsToMany(Favorite, {through: 'UserFavorite', timestamps: false})
