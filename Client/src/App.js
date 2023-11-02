@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { useState, useEffect } from 'react';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom'
 
 import Cards from './components/cards/Cards.jsx';
 import NavBar from './components/navBar/navBar';
@@ -15,42 +15,13 @@ import './App.css';
 
 function App() {
    const location = useLocation();
-   const navigate = useNavigate();
    const [characters, setCharacters] = useState([]);
-   const [access, setAccess] = useState(false);
-
-
-   async function login(userData) {
-
-      try {
-         const { email, password } = userData;
-         const URL = 'http://localhost:3001/rickandmorty/login/';
-
-         const { data } = await axios(URL + `?email=${email}&password=${password}`);
-         const { access } = data;
-         setAccess(data);
-         if (access) navigate ('/home')
-            else{alert('Wrong Credentials')}
-         
-      } catch (error) {
-         alert('Something went wrong');
-      }
-   }
-
-   useEffect(() => {
-      !access && navigate('/');
-   }, [access]);
-
 
 
    async function searchHandler(id) {
       const URL_BASE = "http://localhost:3001/rickandmorty";
 
-      // ! Verificar si el personaje ya está en la lista pero puede no ser necesario
-      // if (characters.find((char) => char.id === id)) {
-      //    return alert("Character already added!");
-      // }
-
+    
       // Buscar el personaje en la lista local antes de hacer la llamada a la API
       const existingCharacter = characters.find((char) => char.id === id);
       if (existingCharacter) {
@@ -92,7 +63,6 @@ function App() {
 
 
          <Routes>
-            <Route path='/' element={<Form login={login} />} />
             <Route path='/home' element={<Cards characters={characters} onClose={closeHandler} />} />
             <Route path='/detail/:id' element={<Detail />} />
             <Route path='/favorites' element={<Favorites characters={characters} />} />
