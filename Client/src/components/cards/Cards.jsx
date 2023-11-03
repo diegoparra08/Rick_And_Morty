@@ -7,9 +7,7 @@ export default function Cards({ characters, onClose }) {
       <div>
 
       <CardsContainer>
-         {characters.length < 1 && 
-         <Banner>Start by searching a character. Type a number in the searchbar</Banner>
-         }
+      
          
          {characters.map((character) => (
             <Card

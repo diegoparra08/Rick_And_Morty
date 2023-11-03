@@ -18,7 +18,7 @@ function App() {
 
 
    async function searchHandler(id) {
-      const URL_BASE = "http://localhost:3001/rickandmorty";
+      const URL_BASE = "https://rymsrver.onrender.com/rickandmorty";
 
     
       // Buscar el personaje en la lista local antes de hacer la llamada a la API

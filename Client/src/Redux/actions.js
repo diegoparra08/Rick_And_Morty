@@ -9,11 +9,12 @@ export const RESET = 'RESET'
 
 
 export const addFav = (character) => {
-    const endpoint = 'http://localhost:3001/rickandmorty/fav';
+
+    const endpoint = 'https://rymsrver.onrender.com/rickandmorty/fav';
     return async (dispatch) => {
         try {
             const { data } = await axios.post(endpoint, character)
-            console.log(data);
+       
             return dispatch({
                 type: ADD_FAV,
                 payload: data,
@@ -26,7 +27,7 @@ export const addFav = (character) => {
 };
 
 export const removeFav = (id) => {
-    const endpoint = 'http://localhost:3001/rickandmorty/fav/' + id;
+    const endpoint = 'https://rymsrver.onrender.com/rickandmorty/fav/' + id;
     return async (dispatch) => {
         try {
             const { data } = await axios.delete(endpoint)

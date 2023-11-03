@@ -14,7 +14,7 @@ export default function NavBar({ onSearch }) {
 
             <SearchBar onSearch={onSearch} />
 
-            <Link to='/home'>
+            <Link to='/'>
                 <HomeButton>Home</HomeButton>
             </Link>
 

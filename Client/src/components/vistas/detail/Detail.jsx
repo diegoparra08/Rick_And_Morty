@@ -7,8 +7,8 @@ function Detail() {
     const { id } = useParams();
     const [character, setCharacter] = useState({});
 //  const URL_BASE = "https://rickandmortyapi.com/api"
- const URL_BASE = "http://localhost:3001/rickandmorty"
-  //    https://rickandmortyapi.com/api/character/${id} api RyM
+ const URL_BASE = "https://rymsrver.onrender.com/rickandmorty"
+  
     useEffect(() => {
         axios(`${URL_BASE}/character/${id}`).then(({ data }) => {
             if (data.name) {
