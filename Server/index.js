@@ -1,7 +1,7 @@
 const express = require('express');
-const router = require('./routes/index');
+const router = require('./src/routes/index');
 const morgan = require('morgan');
-const { conn } = require('./DB_connection');
+const { conn } = require('./src/DB_connection');
 
 const server = express();  //crear el server 
 const PORT = 3001;
