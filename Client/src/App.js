@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 import Cards from './components/cards/Cards.jsx';
 import NavBar from './components/navBar/navBar';

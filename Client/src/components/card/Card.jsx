@@ -11,7 +11,7 @@ import { SingleCard, Image, CharacterName, Info, PicInfoDiv, CloseButton, FavBut
 function Card(props) {
    const navigate = useNavigate();
    const { id, name, species, gender, status, origin, image, onClose, addFav, removeFav, myFavorites } = props;
-console.log('caaaaard', origin);
+
    const [isFav, setIsFav] = useState(false);
    const [closeBtn, setCloseBtn] = useState(true);
 

@@ -1,12 +1,15 @@
 import Card from '../card/Card';
-import {CardsContainer} from './cards.style'
+import {CardsContainer, Banner} from './cards.style'
 
 export default function Cards({ characters, onClose }) {
    
-console.log(characters);
    return (
       <div>
+
       <CardsContainer>
+         {characters.length < 1 && 
+         <Banner>Start by searching a character. Type a number in the searchbar</Banner>
+         }
          
          {characters.map((character) => (
             <Card
